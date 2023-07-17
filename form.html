@@ -1,0 +1,54 @@
+<!-- Add this script tag to include Firebase JavaScript SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- Initialize Firebase with your project's configuration -->
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyBlskLC7p5bc2V9971LOUSa6JY_9cdW1N0",
+    authDomain: "nitagartala-pellieppudu.firebaseapp.com",
+    projectId: "nitagartala-pellieppudu",
+    storageBucket: "nitagartala-pellieppudu.appspot.com",
+    messagingSenderId: "967801704426",
+    appId: "1:967801704426:web:c6d665a1600bcfd3fcac93",
+    measurementId: "G-REJG4YC49L"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Function to submit the form data to Firebase Realtime Database
+  function submitForm() {
+    var name = document.getElementById("name").value;
+    var date = document.getElementById("date").value;
+    var location = document.getElementById("location").value;
+
+    // Get a reference to the database
+    var database = firebase.database();
+
+    // Push the form data to the "marriages" node in the database
+    database.ref("maddy").push({
+      name: name,
+      date: date,
+      location: location
+    });
+  }
+</script>
+
+<body>
+    <header>
+        <h1>Marriage Information Form</h1>
+    </header>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+
+        <label for="location">Where:</label>
+        <input type="text" id="location" name="location" required><br>
+
+        <!-- Call the submitForm() function when the Submit button is clicked -->
+        <input type="button" value="Submit" onclick="submitForm()">
+    </form>
+</body>
